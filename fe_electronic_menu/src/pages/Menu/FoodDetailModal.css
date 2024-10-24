@@ -1,0 +1,21 @@
+/* FoodDetailModal.css */
+.modal-dialog-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Đảm bảo căn giữa theo chiều dọc */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050; /* Đảm bảo modal nổi lên trên các thành phần khác */
+  }
+  
+  .modal-content {
+    width: 100%;
+    max-width: 900px; /* Cài đặt chiều rộng tối đa của modal */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  

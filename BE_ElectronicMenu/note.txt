@@ -1,0 +1,4 @@
+cách tắt hết c ổng 8080 chạy ngầm trong máy
+b1: sudo lsof -i :8080   -> lấy được PID chạy ngầm copy lại PID
+b2: taskkill /PID [PID] /F    -> paste PID vừa copy vào thay cho `[PID]`
+

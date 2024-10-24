@@ -1,0 +1,8 @@
+.sidebar {
+    width: 20%;
+    min-width: 200px; /* Đảm bảo chiều rộng tối thiểu cho màn hình nhỏ */
+}
+nav {
+    height: 100vh; /* Chiều cao toàn màn hình */
+    overflow-y: auto; /* Thêm thanh cuộn khi nội dung vượt quá */
+}

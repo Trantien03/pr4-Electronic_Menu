@@ -1,0 +1,150 @@
+.food-item {
+    width: 100%; /* Chiếm toàn bộ chiều rộng của phần tử cha */
+    max-width: 300px; /* Giới hạn kích thước tối đa của phần tử */
+    margin: auto; /* Giữa các món ăn */
+    border-radius: 15px; /* Bo tròn các góc */
+    box-shadow: 0px 0px 10px #00000015; /* Bóng đổ cho món ăn */
+    transition: 0.3s; /* Hiệu ứng chuyển tiếp */
+    position: relative; /* Để có thể đặt các phần tử con lên trên ảnh */
+    display: flex; /* Sử dụng Flexbox */
+    flex-direction: column; /* Đặt hướng dọc */
+    justify-content: space-between; /* Căn giữa các phần tử con */
+}
+
+.food-item:hover {
+    box-shadow: 0px 0px 20px #00000040; /* Tăng cường bóng khi hover */
+    transform: scale(1.05); /* Phóng to món ăn khi hover */
+}
+
+.food-item.disabled {
+    opacity: 0.5; /* Làm mờ món ăn đã hết hàng */
+    pointer-events: none; /* Không cho phép tương tác với món ăn */
+}
+
+.food-item-image {
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    aspect-ratio: 4/3; /* Tỷ lệ chiều rộng và chiều cao */
+    border-radius: 15px 15px 0 0; /* Bo tròn các góc trên */
+    object-fit: cover; /* Đảm bảo ảnh giữ đúng tỷ lệ mà không bị méo */
+}
+
+.food-item-info {
+    padding: 20px; /* Khoảng cách cho thông tin món ăn */
+    flex-grow: 1; /* Đảm bảo phần thông tin chiếm hết chiều cao còn lại */
+}
+
+.food-item-name-rating {
+    display: flex; /* Sử dụng Flexbox cho tên và đánh giá */
+    justify-content: space-between; /* Căn giữa nội dung */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    margin-bottom: 10px; /* Khoảng cách dưới */
+}
+
+.food-item-name-rating p {
+    font-size: 20px; /* Kích thước chữ cho tên món ăn */
+    font-weight: 500; /* Độ đậm chữ */
+}
+
+.food-item-discount {
+    position: absolute; /* Đặt voucher lên trên ảnh */
+    top: 15px; /* Khoảng cách từ trên */
+    left: 15px; /* Khoảng cách từ bên trái */
+    background-color: #d9534f; /* Màu nền của voucher */
+    color: white; /* Màu chữ */
+    padding: 5px 10px; /* Khoảng cách bên trong voucher */
+    border-radius: 20px; /* Bo tròn các góc */
+    font-weight: bold; /* Độ đậm chữ */
+    font-size: 14px; /* Kích thước chữ */
+    z-index: 10; /* Đảm bảo voucher nằm trên ảnh */
+}
+
+.food-item-price {
+    color: tomato; /* Màu chữ cho giá */
+    font-size: 22px; /* Kích thước chữ cho giá */
+    font-weight: 500; /* Độ đậm chữ */
+    margin: 10px 0; /* Khoảng cách trên và dưới */
+    display: flex; /* Sử dụng Flexbox */
+    flex-direction: column; /* Đặt hướng dọc */
+    gap: 5px; /* Khoảng cách giữa các phần tử */
+}
+
+.original-price {
+    text-decoration: line-through; /* Gạch ngang cho giá gốc */
+    color: #888; /* Màu chữ cho giá gốc */
+}
+
+.discounted-price {
+    font-weight: bold; /* Độ đậm chữ cho giá đã giảm */
+}
+
+.food-item-img-container {
+    position: relative; /* Để đặt các phần tử con lên trên */
+}
+
+/* Điều chỉnh cho nút Add và Remove */
+.food-item-counter {
+    display: flex; /* Sử dụng Flexbox */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between; /* Căn giữa nội dung */
+    padding: 6px; /* Khoảng cách bên trong */
+    border-radius: 50px; /* Bo tròn các góc */
+    background-color: white; /* Màu nền */
+    position: absolute; /* Đặt vị trí của counter */
+    bottom: 10px; /* Đặt vị trí từ dưới lên */
+    right: 10px; /* Đặt vị trí từ bên phải vào */
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    z-index: 13; /* Đảm bảo nút nằm trên các phần tử khác */
+}
+
+.food-item-img-container .add,
+.food-item-img-container .remove {
+    width: 30px; /* Chiều rộng nút "Add" và "Remove" */
+    height: 30px; /* Chiều cao nút "Add" và "Remove" */
+    cursor: pointer; /* Hiệu ứng con trỏ khi hover */
+    border-radius: 50%; /* Hình tròn */
+    transition: transform 0.3s ease; /* Hiệu ứng khi hover nút */
+    z-index: 15; /* Đảm bảo nút đè lên các phần tử khác */
+}
+
+.food-item-img-container .add:hover,
+.food-item-img-container .remove:hover {
+    transform: scale(1.1); /* Phóng to nút khi hover */
+}
+
+.food-item-counter p {
+    margin: 0; /* Bỏ margin cho chữ trong p */
+    font-size: 18px; /* Kích thước chữ */
+    font-weight: bold; /* Độ đậm chữ */
+    text-align: center; /* Căn giữa chữ trong p */
+    width: 30px; /* Chiều rộng cho chữ trong p */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .food-item {
+        max-width: 90%; /* Đặt chiều rộng tối đa cho màn hình nhỏ hơn */
+        margin: 10px; /* Thêm khoảng cách giữa các món ăn */
+    }
+
+    .food-item-price {
+        font-size: 18px; /* Giảm kích thước chữ cho giá */
+    }
+
+    .food-item-name-rating p {
+        font-size: 18px; /* Giảm kích thước chữ cho tên món ăn */
+    }
+}
+
+@media (max-width: 576px) {
+    .food-item-price {
+        font-size: 16px; /* Giảm kích thước chữ cho giá trên màn hình nhỏ */
+    }
+
+    .food-item-name-rating p {
+        font-size: 16px; /* Giảm kích thước chữ cho tên món ăn trên màn hình nhỏ */
+    }
+
+    .food-item-discount {
+        font-size: 12px; /* Giảm kích thước chữ cho voucher trên màn hình nhỏ */
+    }
+}

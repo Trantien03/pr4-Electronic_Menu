@@ -1,0 +1,190 @@
+/* Hiệu ứng trượt lên khi mở modal */
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Hiệu ứng trượt xuống khi đóng modal */
+@keyframes slide-down {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+/* Khi modal được mở */
+.modal.show .modal-dialog {
+    animation: slide-up 0.5s ease-out forwards;
+}
+
+/* Khi modal bị đóng */
+.modal.hide .modal-dialog {
+    animation: slide-down 0.5s ease-out forwards;
+}
+
+/* Vị trí mặc định của modal */
+.modal-dialog {
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    transform: translateY(100%);
+}
+
+
+.custom-modal .modal-header {
+    border-bottom: none;
+}
+
+.custom-modal .title{
+    margin-left: 20px;
+}
+
+.custom-modal .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.custom-modal .modal-body {
+    text-align: center;
+}
+
+.request-input {
+    width: 100%;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.submit-button {
+    background-color: #ff8c00;
+    border-color: #ff8c00;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.submit-button:hover {
+    background-color: #e67e00;
+    border-color: #e67e00;
+}
+
+
+.custom-payment-modal .modal-header {
+    border-bottom: none;
+}
+
+.custom-payment-modal .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.custom-payment-modal .modal-body {
+    text-align: center;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.submit-button {
+    background-color: #ff8c00;
+    border-color: #ff8c00;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.submit-button:hover {
+    background-color: #e67e00;
+    border-color: #e67e00;
+}
+
+
+/* Custom modal style */
+.custom-payment-modal .modal-content,
+.custom-service-modal .modal-content {
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.custom-payment-modal .modal-header,
+.custom-service-modal .modal-header {
+
+    border-bottom: none;
+}
+
+.custom-payment-modal .modal-footer,
+.custom-service-modal .modal-footer {
+    border-top: none;
+}
+
+.custom-service-modal .modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.custom-service-modal .modal-header .title {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 5px;
+    color: #333;
+}
+
+.custom-payment-modal  .modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.custom-payment-modal.modal-header .title {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 5px;
+    color: #333;
+}
+
+/*Payment check */
+
+.payment-option {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.payment-option:hover {
+    background-color: #f0f0f0;
+}
+
+.payment-option.selected {
+    background-color: #e0f7fa; /* Màu nền khi được chọn */
+    border-color: #00acc1;     /* Màu viền khi được chọn */
+}
+
+.payment-option.selected:hover {
+    background-color: #b2ebf2;
+}

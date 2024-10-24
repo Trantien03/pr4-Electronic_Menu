@@ -1,0 +1,5 @@
+.border .ul {
+    height: auto; /* Đảm bảo chiều cao tự động */
+    padding: 0; /* Điều chỉnh khoảng cách cho phù hợp */
+    margin: 0; /* Loại bỏ khoảng cách mặc định */
+}

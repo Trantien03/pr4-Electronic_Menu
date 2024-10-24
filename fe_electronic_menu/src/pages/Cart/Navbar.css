@@ -1,0 +1,16 @@
+/* Navbar.css */
+.navbar-container {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.back-button {
+    margin-left: 10px;
+}
+
+.clear-cart-button {
+    margin-right: 10px;
+}
+
+.navbar-title h5 {
+    margin: 0;
+}
