@@ -1,0 +1,6 @@
+- Slide : https://www.canva.com/design/DAGT5BQlkEA/2y1wnVKzWW7N6MA8gXeqdw/edit?fbclid=IwY2xjawGIsQxleHRuA2FlbQIxMAABHQN7zy_sh2ZQ4fz87YXeJny9Sg3ByRe-3ANNeHHycZF4nBlaN-n47TNqmw_aem_cD4hNM_VlEwseJGKFh4VVg
+- Thông tin thẻ test thanh toán : https://sandbox.vnpayment.vn/apis/vnpay-demo/
+- Khi muốn clone dự án về chạy thì phải cài đặt moi trường bằng cách "npm i"
+- run manager và fe_electronic_menu: "npm run dev".
+- chạy fe_electronic_menu vào cổng 5173 trước khi chạy manager để manager chạy vào cổng 5174.
+- manager nên chạy cổng: "http://localhost:5174/".
