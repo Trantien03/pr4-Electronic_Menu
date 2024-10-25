@@ -2,7 +2,7 @@ package org.example.projectapi.Controller;
 
 import org.example.projectapi.Service.NotificationService;
 import org.example.projectapi.dto.request.NotificationRequest;
-import org.example.projectapi.dto.response.MessageRespone;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.enums.NotifiStatus;
 import org.example.projectapi.model.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +26,17 @@ public class NotificationController {
 
 
     @PostMapping()
-    public ResponseEntity<MessageRespone> createNotification(@RequestBody NotificationRequest notification) {
+    public ResponseEntity<MessageResponse> createNotification(@RequestBody NotificationRequest notification) {
         return ResponseEntity.ok(notificationService.sendNotification(notification));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<MessageRespone> updateNotification(@PathVariable long id, @RequestParam NotifiStatus status) {
+    public ResponseEntity<MessageResponse> updateNotification(@PathVariable long id, @RequestParam NotifiStatus status) {
         return ResponseEntity.ok(notificationService.changeNotification(id,status));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<MessageRespone> deleteNotification(@PathVariable long id) {
+    public ResponseEntity<MessageResponse> deleteNotification(@PathVariable long id) {
         return ResponseEntity.ok(notificationService.deleteNotification(id));
     }
 }

@@ -2,7 +2,7 @@ package org.example.projectapi.Controller;
 
 import org.example.projectapi.Service.EventService;
 import org.example.projectapi.dto.request.EventRequest;
-import org.example.projectapi.dto.response.MessageRespone;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.model.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -68,13 +68,13 @@ public class EventController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<MessageRespone> deleteCoupon(@PathVariable Long id) {
+    public ResponseEntity<MessageResponse> deleteCoupon(@PathVariable Long id) {
         Optional<Event> publisher = eventService.findById(id);
         if (publisher.isPresent()) {
             eventService.deleteById(id);
-            return ResponseEntity.ok(new MessageRespone("Coupon deleted successfully"));
+            return ResponseEntity.ok(new MessageResponse("Coupon deleted successfully"));
         } else {
-            return ResponseEntity.ok(new MessageRespone("Coupon could not be deleted"));
+            return ResponseEntity.ok(new MessageResponse("Coupon could not be deleted"));
         }
     }
 }

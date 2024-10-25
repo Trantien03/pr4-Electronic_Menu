@@ -73,7 +73,7 @@ const FoodList = ({ foodList, addItem }) => {
             </div>
 
             {/* Danh sách món ăn */}
-            <div className="p-2 overflow-y-auto mx-4 my-0" style={{ maxHeight: '400vh' }}>
+            <div className="p-2 overflow-y-auto mx-4 my-0" style={{ maxHeight: '400vh',overflow: 'hidden'}}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {currentItems.map((dish) => (
                         <div key={dish.id} className="text-center border border-gray-300 rounded-lg shadow-lg p-4 bg-white hover:bg-orange-50 transition duration-300 transform hover:scale-105">

@@ -8,6 +8,7 @@ import {UserProvider} from "../AdminComponent/Auth/UserContext.jsx";
 import Orders from './employee/ListOrder/Orders.jsx';
 import Tables from './employee/ListTable/Tables.jsx';
 import Events from './employee/ListEvent/Events.jsx';
+import ListEvaluates from './employee/ListEvaluates/ListEvaluates.jsx';
 
 const Employee = () => {
     const handleClose = () => {
@@ -25,6 +26,7 @@ const Employee = () => {
                     <Routes>
                         <Route path='/' element={<NewOrder />} />
                         <Route path='/notification' element={<NotificationList />} />
+                        <Route path='/evaluates' element={<ListEvaluates/>}/>
                         <Route path='/orders' element={<Orders />} />
                         <Route path='/tables' element={<Tables />} />
                         <Route path='/events' element={<Events />} />

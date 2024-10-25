@@ -1,6 +1,5 @@
 package org.example.projectapi.Service;
 
-
 import org.example.projectapi.Repository.RestaurantTableRepository;
 import org.example.projectapi.model.RestaurantTable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +28,12 @@ public class RestaurantTableService {
 
     public void deleteById(Long id) {
         restaurantTableRepository.deleteById(id);
+    }
+
+    public Optional<RestaurantTable> getRestaurantTableById(Long id) {
+        return restaurantTableRepository.findById(id)
+                .or(() -> {
+                    throw new UsernameNotFoundException("Không tìm thấy bàn với ID: " + id);
+                });
     }
 }

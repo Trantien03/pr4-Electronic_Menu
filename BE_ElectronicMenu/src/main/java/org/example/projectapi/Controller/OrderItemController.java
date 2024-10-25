@@ -3,19 +3,13 @@ package org.example.projectapi.Controller;
 import org.example.projectapi.Service.DishService;
 import org.example.projectapi.Service.OrderItemService;
 import org.example.projectapi.Service.OrderService;
-import org.example.projectapi.dto.request.OrderItemRequest;
-import org.example.projectapi.dto.response.MessageRespone;
-import org.example.projectapi.dto.response.OrderItemResponse;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.enums.StatusOrder;
-import org.example.projectapi.model.Dish;
 import org.example.projectapi.model.OrderItem;
-import org.example.projectapi.model.Orders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
 
 @RestController
@@ -95,11 +89,11 @@ public class OrderItemController {
 //    }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<MessageRespone> deleteOrderItem(@PathVariable long id) {
+    public ResponseEntity<MessageResponse> deleteOrderItem(@PathVariable long id) {
         Optional<OrderItem> orderItem = orderItemService.findById(id);
         if (orderItem.isPresent()) {
             orderItemService.delete(orderItem.get());
-            return ResponseEntity.ok(new MessageRespone("Order item deleted successfully"));
+            return ResponseEntity.ok(new MessageResponse("Order item deleted successfully"));
         }
         return ResponseEntity.notFound().build();
 

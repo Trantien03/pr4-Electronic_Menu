@@ -3,7 +3,7 @@ package org.example.projectapi.Service;
 import org.example.projectapi.Repository.NotificationRepository;
 import org.example.projectapi.Repository.RestaurantTableRepository;
 import org.example.projectapi.dto.request.NotificationRequest;
-import org.example.projectapi.dto.response.MessageRespone;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.enums.NotifiStatus;
 import org.example.projectapi.model.Notification;
 import org.example.projectapi.model.RestaurantTable;
@@ -26,17 +26,17 @@ public class NotificationService {
         return notificationRepository.findAll();
     }
 
-    public MessageRespone sendNotification(NotificationRequest notification) {
+    public MessageResponse sendNotification(NotificationRequest notification) {
         Notification notificationEntity = new Notification();
         Optional<RestaurantTable> table =  restaurantTableRepository.findById(notification.getTableId());
         if (table.isPresent()) {
             notificationEntity.setRestaurantTable(table.get());
             notificationEntity.setMessage(notification.getMessage());
             notificationRepository.save(notificationEntity);
-            return new MessageRespone("Successfully sent notification");
+            return new MessageResponse("Successfully sent notification");
         }
 
-        return new MessageRespone("Table not found");
+        return new MessageResponse("Table not found");
     }
 
 
@@ -44,19 +44,19 @@ public class NotificationService {
         return notificationRepository.findById(id);
     }
 
-    public MessageRespone deleteNotification(long id) {
+    public MessageResponse deleteNotification(long id) {
         notificationRepository.deleteById(id);
-        return new MessageRespone("Successfully deleted notification");
+        return new MessageResponse("Successfully deleted notification");
     }
 
-    public MessageRespone changeNotification(long id,NotifiStatus status) {
+    public MessageResponse changeNotification(long id, NotifiStatus status) {
         Optional<Notification> optional = findNotificationById(id);
         if (optional.isPresent()) {
             Notification notificationEntity = optional.get();
             notificationEntity.setStatus(status);
-            return new MessageRespone("Successfully changed notification");
+            return new MessageResponse("Successfully changed notification");
         }
-        return new MessageRespone("Notification not found");
+        return new MessageResponse("Notification not found");
     }
 
 

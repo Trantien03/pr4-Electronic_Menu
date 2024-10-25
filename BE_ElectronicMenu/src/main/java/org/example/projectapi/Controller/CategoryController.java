@@ -1,8 +1,7 @@
 package org.example.projectapi.Controller;
 
 import org.example.projectapi.Service.CategoryService;
-import org.example.projectapi.dto.request.CategoryRequest;
-import org.example.projectapi.dto.response.MessageRespone;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +37,7 @@ public class CategoryController {
 
     // Định nghĩa endpoint tạo Category
     @PostMapping
-    public ResponseEntity<MessageRespone> createCategory(
+    public ResponseEntity<MessageResponse> createCategory(
             @RequestParam("name") String name,
             @RequestParam("image") MultipartFile image) {
 
@@ -67,24 +66,24 @@ public class CategoryController {
 
             categoryService.save(category);
 
-            return ResponseEntity.ok().body(new MessageRespone("Category created successfully"));
+            return ResponseEntity.ok().body(new MessageResponse("Category created successfully"));
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MessageRespone("Error: " + e.getMessage()));
+                    .body(new MessageResponse("Error: " + e.getMessage()));
         }
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<MessageRespone> updateCategory(
+    public ResponseEntity<MessageResponse> updateCategory(
             @PathVariable Long id,
             @RequestParam("name") String name,
             @RequestParam(value = "image", required = false) MultipartFile image) {
 
         Category category = categoryService.findCategoryId(id);
         if (category == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageRespone("Category not found"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("Category not found"));
         }
 
         // Cập nhật tên
@@ -117,17 +116,17 @@ public class CategoryController {
                 Files.copy(image.getInputStream(), Paths.get(newImagePath), StandardCopyOption.REPLACE_EXISTING);
                 category.setImage(uniqueFilename);
             } catch (IOException e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new MessageRespone("Failed to save image"));
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new MessageResponse("Failed to save image"));
             }
         }
 
         categoryService.save(category);
-        return ResponseEntity.ok().body(new MessageRespone("Category updated successfully"));
+        return ResponseEntity.ok().body(new MessageResponse("Category updated successfully"));
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<MessageRespone> deleteCategory(@PathVariable Long id) {
+    public ResponseEntity<MessageResponse> deleteCategory(@PathVariable Long id) {
         Category category = categoryService.findCategoryId(id);
         if (category != null) {
             // Xóa ảnh liên quan
@@ -138,15 +137,15 @@ public class CategoryController {
                 if (imageFile.exists()) {
                     boolean deleted = imageFile.delete();
                     if (!deleted) {
-                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new MessageRespone("Failed to delete image"));
+                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new MessageResponse("Failed to delete image"));
                     }
                 }
             }
 
             categoryService.deleteById(id);
-            return ResponseEntity.ok().body(new MessageRespone("Category deleted successfully"));
+            return ResponseEntity.ok().body(new MessageResponse("Category deleted successfully"));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageRespone("Category not found"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("Category not found"));
         }
     }
 

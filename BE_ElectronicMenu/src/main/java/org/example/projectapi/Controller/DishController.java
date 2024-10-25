@@ -2,7 +2,7 @@ package org.example.projectapi.Controller;
 
 import org.example.projectapi.Service.CategoryService;
 import org.example.projectapi.Service.DishService;
-import org.example.projectapi.dto.response.MessageRespone;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.enums.StatusDish;
 import org.example.projectapi.model.Category;
 import org.example.projectapi.model.Dish;
@@ -75,7 +75,7 @@ public class DishController {
 
             Category category = categoryService.findCategoryId(categoryId);
             if (category == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageRespone("Category not found"));
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("Category not found"));
             }
 
             Dish newDish = new Dish();
@@ -95,20 +95,20 @@ public class DishController {
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(new MessageRespone("Error: " + e.getMessage()));
+                    .body(new MessageResponse("Error: " + e.getMessage()));
         }
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<MessageRespone> updateFood(@PathVariable Long id,
-                                                     @RequestParam("name") String name,
-                                                     @RequestParam("price") Double price,
-                                                     @RequestParam(value = "image") MultipartFile image,
-                                                     @RequestParam("description") String description,
-                                                     @RequestParam("discount") double discount,
-                                                     @RequestParam("status_dish") StatusDish statusDish,
-                                                     @RequestParam("category_id") Long categoryId) {
+    public ResponseEntity<MessageResponse> updateFood(@PathVariable Long id,
+                                                      @RequestParam("name") String name,
+                                                      @RequestParam("price") Double price,
+                                                      @RequestParam(value = "image") MultipartFile image,
+                                                      @RequestParam("description") String description,
+                                                      @RequestParam("discount") double discount,
+                                                      @RequestParam("status_dish") StatusDish statusDish,
+                                                      @RequestParam("category_id") Long categoryId) {
         try {
             Dish updateDish = dishService.findById(id);
             if (updateDish != null){
@@ -153,19 +153,19 @@ public class DishController {
                 dishService.update(updateDish);
 
 
-                return ResponseEntity.ok().body(new MessageRespone("Updated successfully"));
+                return ResponseEntity.ok().body(new MessageResponse("Updated successfully"));
             }
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageRespone("Food not found"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("Food not found"));
 
         } catch (Exception e) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageRespone("Failed to update food: " + e.getMessage()));
+                    .body(new MessageResponse("Failed to update food: " + e.getMessage()));
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<MessageRespone> deleteDish(@PathVariable long id) {
+    public ResponseEntity<MessageResponse> deleteDish(@PathVariable long id) {
         Dish dish = dishService.findById(id);
         if (dish != null) {
             // Xóa ảnh liên quan
@@ -178,21 +178,21 @@ public class DishController {
             }
 
             dishService.deleteById(id);
-            return ResponseEntity.ok().body(new MessageRespone("Delete successfully"));
+            return ResponseEntity.ok().body(new MessageResponse("Delete successfully"));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageRespone("Dish not found"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("Dish not found"));
         }
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<MessageRespone> changeStatusDish(@PathVariable long id, @RequestParam StatusDish status) {
+    public ResponseEntity<MessageResponse> changeStatusDish(@PathVariable long id, @RequestParam StatusDish status) {
         Dish updateDish = dishService.findById(id);
         if (updateDish != null) {
             updateDish.setStatus(status);
             dishService.update(updateDish);
-            return ResponseEntity.ok().body(new MessageRespone("Change status successfully"));
+            return ResponseEntity.ok().body(new MessageResponse("Change status successfully"));
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageRespone("Food not found"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("Food not found"));
         }
     }
 

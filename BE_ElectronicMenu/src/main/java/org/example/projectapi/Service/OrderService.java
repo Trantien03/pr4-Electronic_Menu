@@ -1,9 +1,8 @@
 package org.example.projectapi.Service;
 
 import jakarta.transaction.Transactional;
-import org.example.projectapi.Repository.OrderItemRepository;
 import org.example.projectapi.Repository.OrderRepository;
-import org.example.projectapi.dto.response.MessageRespone;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.dto.response.OrderItemResponse;
 import org.example.projectapi.dto.response.OrderResponse;
 import org.example.projectapi.enums.StatusOrder;
@@ -83,15 +82,15 @@ public class OrderService {
         return null;
     }
 
-    public MessageRespone changStatusToBillNumber(StatusOrder statusOrder, String billNumber) {
+    public MessageResponse changStatusToBillNumber(StatusOrder statusOrder, String billNumber) {
         Optional<Orders> orders = orderRepository.findByBillNumber(billNumber);
         if (orders.isPresent()) {
             Orders order = orders.get();
             order.setStatus(statusOrder);
             orderRepository.save(order);
-            return new MessageRespone("Changed status to " + statusOrder);
+            return new MessageResponse("Changed status to " + statusOrder);
         }
-        return new MessageRespone("Bill number not found");
+        return new MessageResponse("Bill number not found");
     }
 
     public List<OrderResponse> getOrderStatus(StatusOrder statusOrder) {
@@ -132,7 +131,7 @@ public class OrderService {
     }
 
     @Transactional
-    public MessageRespone updateOrderStatus(Long orderId, StatusOrder newStatus) {
+    public MessageResponse updateOrderStatus(Long orderId, StatusOrder newStatus) {
         logger.info("Updating order status for Order ID: " + orderId + " to " + newStatus);
 
         Optional<Orders> optionalOrder = orderRepository.findById(orderId);
@@ -141,11 +140,11 @@ public class OrderService {
             order.setStatus(newStatus); // Cập nhật trạng thái mới
             orderRepository.save(order); // Lưu thay đổi
             logger.info("Order status updated successfully for Order ID: " + orderId);
-            return new MessageRespone("Order status updated to " + newStatus);
+            return new MessageResponse("Order status updated to " + newStatus);
         }
 
         logger.warn("Order not found for ID: " + orderId);
-        return new MessageRespone("Order not found");
+        return new MessageResponse("Order not found");
     }
 
 

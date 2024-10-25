@@ -27,7 +27,7 @@ const OrderedItems = ({ orderedItems, handleQuantityChangeInOrder, onSubmit }) =
     };
 
     return (
-        <div className="w-1/3 bg-gradient-to-r from-orange-100 to-white p-6 rounded-lg shadow-lg sticky top-0 h-[700px] flex flex-col justify-between">
+        <div className="w-1/3 bg-gradient-to-r from-orange-100 to-white p-6 rounded-lg shadow-lg sticky top-0 h-[770px] flex flex-col justify-between">
             <div className="overflow-y-auto" style={{ maxHeight: '70vh' }}>
                 <h2 className="text-orange-600 font-bold text-3xl mb-4 text-center">ORDER TABLE</h2>
                 {orderedItems.length === 0 ? (

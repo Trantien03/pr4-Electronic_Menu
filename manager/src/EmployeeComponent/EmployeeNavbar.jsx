@@ -59,6 +59,12 @@ export const EmployeeSideBar = () => {
               <span className="absolute top-0 right-0 block h-3 w-3 rounded-full bg-red-600 ring-2 ring-white"></span>
             )}
           </Link>
+          <Link 
+          to="/employee/evaluates"
+          className="bg-orange-500 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out hover:bg-yellow-400 font-semibold"
+          >
+          List Evaluates
+          </Link>
 
           <Link 
           to="/employee/orders"

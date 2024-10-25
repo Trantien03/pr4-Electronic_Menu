@@ -1,6 +1,7 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import rateImage from "../../../assets/rate.svg";
 import React, { useState } from "react";
+import axios from "axios";  // Import axios
 import '../CustomModel.css';
 import '../Home.css';
 
@@ -12,7 +13,10 @@ const FeedbackRequest = () => {
     const [comment, setComment] = useState('');
 
     const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        resetForm();  // Reset form khi đóng modal
+    };
 
     const handleRating = (rate) => {
         setRating(rate);
@@ -26,13 +30,33 @@ const FeedbackRequest = () => {
         );
     };
 
-    const handleSubmit = () => {
-        console.log({
-            rating,
-            feedbackReasons,
+    const resetForm = () => {
+        setRating(0);
+        setFeedbackReasons([]);
+        setPhone('');
+        setComment('');
+    };
+
+    const handleSubmit = async () => {
+        const feedbackData = {
             phone,
-            comment,
-        });
+            description: comment,
+            rating,
+            feedbackReasons // Thêm lý do phản hồi nếu cần thiết
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/v1/evaluates', feedbackData);
+
+            if (response.status === 200) {
+                console.log('Đánh giá đã được gửi thành công:', response.data);
+                alert('Đánh giá đã được gửi thành công!');
+            }
+        } catch (error) {
+            console.error('Lỗi khi gửi đánh giá:', error);
+            alert('Có lỗi xảy ra khi gửi đánh giá!');
+        }
+
         handleClose();
     };
 
@@ -46,7 +70,7 @@ const FeedbackRequest = () => {
             </div>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header>
+                <Modal.Header closeButton>
                     <Modal.Title>Trải nghiệm của bạn hôm nay thế nào?</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -67,16 +91,14 @@ const FeedbackRequest = () => {
                         ))}
                     </div>
 
-                    {/* Hiển thị phản hồi dựa trên đánh giá */}
                     <p className="text-center">
-                        {rating === 1 ? 'Rất thất vọng' : ''}
-                        {rating === 2 ? 'Thất vọng' : ''}
-                        {rating === 3 ? 'Tạm ổn' : ''}
-                        {rating === 4 ? 'Hài Lòng' : ''}
-                        {rating === 5 ? 'Quá tuyệt vời' : ''}
+                        {rating === 1 && 'Rất thất vọng'}
+                        {rating === 2 && 'Thất vọng'}
+                        {rating === 3 && 'Tạm ổn'}
+                        {rating === 4 && 'Hài Lòng'}
+                        {rating === 5 && 'Quá tuyệt vời'}
                     </p>
 
-                    {/* Hiển thị lý do chưa hài lòng nếu đánh giá không phải 5 */}
                     {rating !== 5 && (
                         <Form.Group>
                             <Form.Label>Bạn có điều gì chưa hài lòng phải không?</Form.Label>

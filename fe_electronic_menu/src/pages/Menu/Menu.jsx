@@ -20,7 +20,7 @@ const Menu = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu visibility
   const [currentPage, setCurrentPage] = useState(1); 
-  const [itemsPerPage] = useState(100);
+  const [itemsPerPage] = useState(8);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { tableId, tableName } = getTableFromUrl(searchParams);

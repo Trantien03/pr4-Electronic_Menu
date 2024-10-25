@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import org.example.projectapi.Service.*;
 import org.example.projectapi.dto.request.OrderItemRequest;
 import org.example.projectapi.dto.request.OrderRequest;
-import org.example.projectapi.dto.response.MessageRespone;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.dto.response.OrderResponse;
 import org.example.projectapi.enums.OrderType;
 import org.example.projectapi.enums.PaymentMethod;
@@ -87,12 +87,12 @@ public class OrderController {
                 return ResponseEntity.ok(saveOrder.getId());
             }
 
-        return ResponseEntity.ok(new MessageRespone("Table not found"));
+        return ResponseEntity.ok(new MessageResponse("Table not found"));
     }
 
 
     @PostMapping("/orderTake")
-    public ResponseEntity<MessageRespone> createOrderTakeWay(@RequestBody OrderRequest orderRequest) {
+    public ResponseEntity<MessageResponse> createOrderTakeWay(@RequestBody OrderRequest orderRequest) {
             Orders newOrder = new Orders();
             newOrder.setCustomer(orderRequest.getCustomer());
             double totalDiscount= eventService.applyEventDiscount(orderRequest);
@@ -110,7 +110,7 @@ public class OrderController {
         }
 
 
-        return ResponseEntity.ok(new MessageRespone("Create order successful"));
+        return ResponseEntity.ok(new MessageResponse("Create order successful"));
 
 
     }

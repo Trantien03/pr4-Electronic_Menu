@@ -4,7 +4,7 @@ import org.example.projectapi.Repository.EmployeeRepository;
 import org.example.projectapi.dto.request.EmployeeRequest;
 import org.example.projectapi.dto.request.SignInRequest;
 import org.example.projectapi.dto.response.EmployeeResponse;
-import org.example.projectapi.dto.response.MessageRespone;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.model.Employee;
 import org.example.projectapi.jwt.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,9 +36,9 @@ public class AuthService {
         Optional<Employee> employee = employeeRepository.findById(id);
         if (employee.isPresent()) {
             employeeRepository.deleteById(id);
-            return ResponseEntity.ok(new MessageRespone("Deleted Successfully"));
+            return ResponseEntity.ok(new MessageResponse("Deleted Successfully"));
         }
-        return ResponseEntity.ok(new MessageRespone("Not found"));
+        return ResponseEntity.ok(new MessageResponse("Not found"));
     }
 
     public boolean checkEmail(String email) {

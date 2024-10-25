@@ -1,7 +1,7 @@
 package org.example.projectapi.Controller;
 
 import org.example.projectapi.Service.RestaurantTableService;
-import org.example.projectapi.dto.response.MessageRespone;
+import org.example.projectapi.dto.response.MessageResponse;
 import org.example.projectapi.model.RestaurantTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,13 +50,13 @@ public class RestaurantTableController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<MessageRespone> deleteRestaurantTable(@PathVariable Long id) {
+    public ResponseEntity<MessageResponse> deleteRestaurantTable(@PathVariable Long id) {
         Optional<RestaurantTable> publisher = restaurantTableService.findById(id);
         if (publisher.isPresent()) {
             restaurantTableService.deleteById(id);
-            return ResponseEntity.ok(new MessageRespone("Delete table successfully"));
+            return ResponseEntity.ok(new MessageResponse("Delete table successfully"));
         } else {
-            return ResponseEntity.ok(new MessageRespone("Not found table"));
+            return ResponseEntity.ok(new MessageResponse("Not found table"));
         }
     }
 }

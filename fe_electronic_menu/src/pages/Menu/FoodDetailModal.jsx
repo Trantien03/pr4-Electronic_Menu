@@ -16,12 +16,12 @@ const FoodDetailModal = ({ id, show, onHide, food }) => {
   }, [food, id]);
 
   const fetchUpdatedFoodList = async () => {
-    await fetchFoodList(); // Gọi lại hàm lấy danh sách món ăn từ API hoặc dữ liệu cục bộ
+    await fetchFoodList();
   };
 
   if (!food) return null;
 
-  const { name, price, discount, image, description } = food; // Lấy description từ food
+  const { name, price, discount, image, description } = food;
   const numericPrice = parseFloat(price) || 0;
   const numericDiscount = parseFloat(discount) || 0;
   const discountedPrice =
@@ -44,10 +44,10 @@ const FoodDetailModal = ({ id, show, onHide, food }) => {
 
   const handleAddToCart = () => {
     if (quantity > 0) {
-      removeAllFromCart(id); // Xóa các món cũ trước khi thêm món mới với số lượng đã thay đổi
-      addToCart2(id, quantity, note); // Thêm món vào giỏ hàng
-      fetchUpdatedFoodList(); // Gọi lại danh sách món ăn để cập nhật giao diện
-      onHide(); // Đóng modal
+      removeAllFromCart(id);
+      addToCart2(id, quantity, note);
+      fetchUpdatedFoodList();
+      onHide();
     }
   };
 
@@ -67,9 +67,10 @@ const FoodDetailModal = ({ id, show, onHide, food }) => {
       {/* Modal Body */}
       <Modal.Body className="text-center p-4">
         <img
-          className="rounded-lg mb-4 max-w-full h-auto object-cover"
+          className="rounded-lg mb-4 mx-auto max-w-full h-auto object-cover"
           src={`http://localhost:8080/images/${image}`}
           alt={name}
+          style={{ maxWidth: "300px" }} // Giới hạn chiều rộng của ảnh
         />
 
         {/* Note Input */}
@@ -82,7 +83,7 @@ const FoodDetailModal = ({ id, show, onHide, food }) => {
 
         {/* Description */}
         <div className="ml-8">
-          <span>{description}</span> {/* Correct reference here */}
+          <span>{description}</span>
         </div>
 
         {/* Quantity Controls */}
