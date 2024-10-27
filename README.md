@@ -1,4 +1,4 @@
-- Slide : https://www.canva.com/design/DAGT5BQlkEA/2y1wnVKzWW7N6MA8gXeqdw/edit?fbclid=IwY2xjawGIsQxleHRuA2FlbQIxMAABHQN7zy_sh2ZQ4fz87YXeJny9Sg3ByRe-3ANNeHHycZF4nBlaN-n47TNqmw_aem_cD4hNM_VlEwseJGKFh4VVg
+- Slide : [slide nhom1.pdf](https://github.com/user-attachments/files/17533099/slide.nhom1.pdf)
 - Thông tin thẻ test thanh toán : https://sandbox.vnpayment.vn/apis/vnpay-demo/
 - Khi muốn clone dự án về chạy thì phải cài đặt moi trường bằng cách "npm i"
 - run manager và fe_electronic_menu: "npm run dev".
